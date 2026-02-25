@@ -1,0 +1,22 @@
+Lab: Password reset broken logic
+url:https://portswigger.net/web-security/authentication/other-mechanisms/lab-password-reset-broken-logic
+
+Amaç: Şifre sıfırlama hatasından hesap çalma.
+
+
+Analiz: 
+    -- Hesap şifresi değişimi için isim yada email gerekli.
+    -- İstek yapılınca mailimize lik geliyor linkde ise bir token var hem urlde hemde key olarak geliyor.
+    -- Bu token sistem tarafında kontrol edilmiyor urlde ve keyde aynı olması yeterli oluşuyordu
+
+Saldırı:
+
+    -- Carlos adı ile şifre değişim talebinde bulunup isteği yakalıyoruz 
+    -- Bunun yerine yakaladığımız ve kendi hesabımızda yaptığımız bir şifre değişimi işlemini koyuyoruz
+    -- Yapmamız gereken tek şey urlden ve key kısmından temp-forgot-password-token değerini boş bırakıp adımızı carlos yapmak
+    -- Bu işlem sayesinde carlos hesabının şifresini biz belirlemiş oluyoruz.
+
+Sonuç:
+
+    -- Artık wiener ve carlos adında iki farklı hesabımız var xd
+    
