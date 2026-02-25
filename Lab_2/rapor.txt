@@ -1,0 +1,14 @@
+Lab: 2FA simple bypass
+url: https://portswigger.net/web-security/authentication/multi-factor/lab-2fa-simple-bypass
+
+Amaç:
+ Tek kullanımlık şifre engelini atlatmak.
+
+Analiz:
+
+    -- Sitede kullanıcıların arasında gezinerek 2 adımlı doğrulamayı aşmamızı istiyor
+    kendi hesabımızda doğrulama kodu isteğini incelediğimizde  mfa-code=1436 adında bir kısım görüyoruz
+    fakat bunun urlde herhangi bir değer almadan da çalışıyor.
+
+    -- Diğer hesapta 2. adımın doğrulamasını yakalayıp urlde sonuna mfa-code yazınca işlem tamamlanmış oldu .
+    hesaba erişebildik.
