@@ -1,0 +1,28 @@
+Amaç adminin telefon numarasına erişmek.
+
+Analiz:
+
+-- Sisteme giriş yaparken admin admin bilgileri ile girmeyi denedik ve sistem bunu kabul etti.
+-- Daha sonra 6 haneli bir sayıdan tek kullanımlık bir doğrulama kodu istedi.
+-- Doğrulama koduna brute force denenebilirdi sadece numaralardan oluşuyordu ama 
+ hane epey uzun bir süre alırdı.
+-- İstekleri incelemeye başladık ve doğrulama isteğinde token değeri biraz garip görünüyordu.
+
+İstek :
+
+        Origin: http://172.20.22.206
+        Content-Type: application/x-www-form-urlencoded
+        Upgrade-Insecure-Requests: 1
+        User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+        Referer: http://172.20.22.206/verification.php
+        Accept-Encoding: gzip, deflate, br
+        Cookie: PHPSESSID=brqgag6v0lv12s1j873p0a732k; token=Mzc5MTQ2
+        Connection: keep-alive
+
+        verification_token=123456
+
+-- Dikkat etmemiz gereken şey token değerinin aslında bir base şifre ile şifrelenmiş olması
+--  Mzc5MTQ2 değerini decode edersek sonuç bizi içeri atacaktır.
+
+Sonuç: token değerini decode edince doğrula kodunu bulduk. Hesap avucumuza düşmüş oldu.

