@@ -1,0 +1,14 @@
+Lab: Broken brute-force protection, IP block
+url: https://portswigger.net/web-security/authentication/password-based/lab-broken-bruteforce-protection-ip-block
+
+
+Analiz:
+
+    -- Sistemde 3 sefer üst üste yanlış girince timer başlatan bi koruma var ama 2 girişten sonra doğru giriş yaparsak sorunsuz atak yapabiliriz
+    -- Bunun için her 2 carlostan sonra 1 wiener hesabı girmemiz gerekecek. bunun için script.py dosyasını çalıştırım çıktısından payloadları alabilirsiniz.
+    -- Burpde bu çıktılarla çalışırsanız sonuca erişeceksiniz.
+    -- Dikkat edilmesi gereken nokta şu burpde aynı anda 10 istek atılması varsayılandır bunu her seferinde 1 istek olarak düzeltin
+    -- Ayrıca sistemde kullanıcı adı hatasınıda ayrıntılı olarak veriliyor . Buda fazla bilgi zafiyetidir. Bizlere kullanıcı adını buldurmaya yeterliydi.
+
+Sonuç :
+    -- Carlos kullanıcısı ellerimizde.
