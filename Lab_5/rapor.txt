@@ -1,0 +1,36 @@
+Lab: Username enumeration via response timing
+url: https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-response-timing
+
+Amaç :
+
+Hesap erişimi kazanmak.
+
+Analiz:
+    -- Sitede standart bi brute force denemesi yapamıoruz , ip kısıtlaması yapılmış 30 dk boyunca engelliyor kullanıcıyı.
+    işte hata mesajı "You have made too many incorrect login attempts. Please try again in 30 minute(s)."
+
+    -- Fakat bloklama işlemi yetersiz olmuş . yaptığımız X-Forwarded-For zehirlemesi sayesinde ip engelini aşabiliyoruz.
+
+    -- Yapılan bir analizde girdi kontrol sistemini anlayabilmek adına oldu.Çıkarımlar bazı hatalı ve doğru deneme yaparak dönüş zamanları analiz ederek yapıldı.
+        
+        Çıkarımlar:
+            * Kullanıcı adı soğru ise şifreyi kotrol ediyor değilse şifreye bakmıyor
+            * Şifre ne kadar uzunsa cevap o kadar gecikiyor.
+        
+
+Saldırı: 
+
+    --Burp aracında intruder kullanarak ip adımızı ardışık ve 1 kez kullanmak üzere sayıları belirleyerek X-Forwarded-For zafiyetinin
+    gereksinimi tamamlandı
+
+    -- Wiener adı ve çok uzun bir parola ile ana iskelet oturtuldu ve burda kullanıcı adına bir payload atayarak kullanıcı isimleri denenmesi için
+    komut verildi. Dönen en uzun cevap kullanıcı adımız olacak.
+
+    -- Kullanıcı adı bulununca ip adresinin sayıları başka sayılar olacak şekilde ayarlandı ve bulunan isimle parola denemeleri başladı
+    durum kodu 302 olan değer bizim cevabımız oldu.
+
+Sonuç :
+
+-- Kullanıcı adı ve parola elimize geçti.
+
+
