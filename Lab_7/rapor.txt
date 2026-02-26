@@ -1,0 +1,14 @@
+Lab: Username enumeration via account lock
+url: https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-account-lock
+
+
+Analiz:
+
+    --Sistemde kullanıcı adını yanlış yazdığımız zaman herhangi bir sıklıkta veya sürede bizi kısıtlamıyor
+    --Doğru kullanıcı adında bie kısıtlaması var mı diye listedeki her elemanlı 5 li denemeye başlamalıyız
+    --Şifre kısmının sonuna boş bi payload ve kullanıcı adı yerine payload vermeliyiz bu ikiliyi clustumer bomb olarak çalıştırınca Sonuç
+    bize farklı uzunlıkta bir mesaj döndürüyor buda bize kullanıcı adını veriyor.
+    --Daha sonra kullanıcı adını kullanarak passwordüde bir payload ile çözüyoruz
+
+Sonuç: 
+LAb tamamlandı.
