@@ -1,0 +1,32 @@
+Lab: Brute-forcing a stay-logged-in cookie
+url: https://portswigger.net/web-security/authentication/other-mechanisms/lab-brute-forcing-a-stay-logged-in-cookie
+
+Amaç :
+
+carlosun hesabına giriş yapmak.
+
+
+Analiz:
+
+    -- Sistemde beni hatırla özelliği var ve daha önceden bu özellik seçildiyse session değeri olmadan sadece bu değerle
+    içeri giriş yapabiliyoruz.
+
+    -- Bu değer "d2llbmVyOjUxZGMzMGRkYzQ3M2Q0M2E2MDExZTllYmJhNmNhNzcw" tarzında geliyor . İlk bakışta anlamsız olabilir 
+    fakat bu değer base 64 şifrelenmiş bir değer. 
+
+    -- Şifrelemeyi çözdüğümüzde wiener:51dc30ddc473d43a6011e9ebba6ca770 tarzında bir değerle karşılaşıyoruz
+
+    -- İlk kısım kullanıcı adımız daha sonra şifremizin .MD5 haslenmiş hali olarak görünüyor
+
+    -- Yapmamız gereken şey kelime listesini bu şifreleme tipiyle harmanlayıp sistemde saldırı başlatmak 
+
+Saldırı:
+
+-- Burp inturder aracılığıyla ilk olarak payload olarak wordlist yüklüyoruz
+-- Daha sonra payload işlemleri kısmından
+        *Hash: MD5
+        *Add Prefix: carlos:
+        *Base64-encode
+    seçenekleriişratliyim saldırıyı başlatıyoruz. 200 durum kodu bizim giriş biletimiz.
+
+Sonuç: Cookie deüerini bulduk buradan sonra istersek şifreyi öğrenebiliriz ama gerek yok zaten sisteme giriş yaptık
