@@ -27,4 +27,5 @@ Payload:
 Sonuç:
 
     -- Payload çalıştı serverin loglarında cookieyi yakaldık bu cookie yi çözdüğümüz zaman kullanıcı adı ve şifre elimize geçti
+    -- cokkie Base64(kullanıcı adı:MD5(şifre)) oalrak tasarlanmıştı
     -- Hesaba girdik ve hesabı sildik. 
